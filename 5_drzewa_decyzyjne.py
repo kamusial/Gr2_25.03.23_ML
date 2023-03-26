@@ -20,8 +20,9 @@ print(df.columns)
 # sns.heatmap(    df.iloc[ : , : 4 ].corr(), annot=True          )
 # plt.show()
 
-#X = df[ ['sepallength', 'sepalwidth' ]    ]   #pierwszy liść - sepal
-X = df[ ['petallength', 'petalwidth' ]    ]    #drugi liść - petal
+# X = df[ ['sepallength', 'sepalwidth' ]    ]   #pierwszy liść - sepal
+# X = df[ ['petallength', 'petalwidth' ]    ]    #drugi liść - petal
+X = df.iloc[: , :4] #oba wiatki, 4 cechy, nie narysujemy granic decyzyjnych
 y = df.class_value
 
 from sklearn.tree import DecisionTreeClassifier
@@ -30,12 +31,14 @@ model = DecisionTreeClassifier(max_depth=20, random_state=0)
 model.fit(X, y)
 
 #granice decyzyjne
-from mlxtend.plotting import plot_decision_regions
-plot_decision_regions(X.values, y.values, model)
-plt.show()
+# from mlxtend.plotting import plot_decision_regions
+# plot_decision_regions(X.values, y.values, model)
+# plt.show()
 
 #wyrysowane drzewo decyzyjne
 # from dtreeplt import dtreeplt
 # dtree = dtreeplt(model=model, feature_names=X.columns, target_names=["setosa","versicolor","virginica"])
 # dtree.view()
 # plt.show()
+
+print(pd.DataFrame(model.feature_importances_, X.columns))
