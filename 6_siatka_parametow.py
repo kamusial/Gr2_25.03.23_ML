@@ -30,3 +30,14 @@ drzewko(11)
 
 from sklearn.model_selection import GridSearchCV
 
+model = DecisionTreeClassifier()
+params = {
+    'max_depth': range(2, 14),    #liczby całkowite od 3 do 13
+    'max_features': range(3, X_train.shape[1]+1, 2),
+    'min_samples_split': [2, 4, 6],
+    'random_state': [0]
+}
+grid = GridSearchCV(model, params, scoring='accuracy', cv=10, verbose=1)
+grid.fit(X_train, y_train)
+print(grid.best_params_)
+print(grid.best_score_)
