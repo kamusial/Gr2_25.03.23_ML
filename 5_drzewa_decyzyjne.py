@@ -27,7 +27,7 @@ y = df.class_value
 
 from sklearn.tree import DecisionTreeClassifier
 
-model = DecisionTreeClassifier(max_depth=20, random_state=0)
+model = DecisionTreeClassifier(max_depth=5, random_state=0)
 model.fit(X, y)
 
 #granice decyzyjne
